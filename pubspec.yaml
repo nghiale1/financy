@@ -43,6 +43,8 @@ dev_dependencies:
   flutter_svg: ^2.0.15
   fl_chart: ^0.69.2
   provider: ^6.1.2
+  dot_navigation_bar: ^1.0.2
+  flutter_riverpod: ^2.6.1
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -81,8 +83,8 @@ flutter:
   fonts:
    - family: Poppins
      fonts:
-       - asset: fonts/Poppins-Regular.ttf
-       - asset: fonts/Poppins-Bold.ttf
+       - asset: assets/fonts/Poppins-Regular.ttf
+       - asset: assets/fonts/Poppins-Bold.ttf
          weight: 700
   #   - family: Trajan Pro
   #     fonts:

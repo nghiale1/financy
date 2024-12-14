@@ -1,9 +1,11 @@
 import 'package:financy/core/constant/app_colors.dart';
+import 'package:financy/feature/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/notification_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../provider/notification_notifier.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
   final Widget title;
@@ -20,24 +22,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Navigator.canPop(context)
-          ? IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
-      )
-          : null,
       title: title,
       actions: [
         if (showNotifyIcon)
-          Consumer<NotificationProvider>(
-            builder: (context, notificationProvider, child) {
+          Consumer(
+            builder: (context, ref, child) {
+              final notificationCount = ref.watch(notificationNotifier);
               return IconButton(
                 icon: Stack(
                   clipBehavior: Clip.none,
                   children: [
                     SvgPicture.asset('assets/icons/notification.svg',
-                    width: 30, height: 30),
-                    if (notificationProvider.notificationCount > 0)
+                        width: 30, height: 30),
+                    if (notificationCount > 0)
                       Positioned(
                         right: 0,
                         top: 0,
@@ -52,9 +49,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             minHeight: 16,
                           ),
                           child: Text(
-                            notificationProvider.notificationCount > 9
+                            notificationCount > 9
                                 ? '9+'
-                                : notificationProvider.notificationCount.toString(),
+                                : notificationCount.toString(),
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 10,
@@ -67,8 +64,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
                 onPressed: () {
-                  print("Notify icon clicked");
-                  },
+                  ref
+                      .read(notificationNotifier.notifier)
+                      .increaseNotification();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => NotificationScreen(),
+                  ));
+                },
               );
             },
           ),
