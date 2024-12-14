@@ -20,6 +20,19 @@ flutter pub get
 flutter run
 ```
 
+## UI
+<div style="display: flex; justify-content: space-between;">
+  
+<img src="https://github.com/user-attachments/assets/33fd1a14-9cc8-45be-b3b9-927559015c13" width="30%" />
+<img src="https://github.com/user-attachments/assets/d75a11fa-2763-4c36-9980-6c7a61712887" width="30%" />
+<img src="https://github.com/user-attachments/assets/51367e15-3f2e-4059-83ce-d75884b59bd4" width="30%" />
+<img src="https://github.com/user-attachments/assets/033355dd-2d8d-4fc0-85ba-4f995706b930" width="30%" />
+<img src="https://github.com/user-attachments/assets/ca88a0dd-a6c6-4dec-8d67-dbc8200325f5" width="30%" />
+<img src="https://github.com/user-attachments/assets/170f15a3-c6d0-4ad1-a734-ea7bcdf9db6b" width="30%" />
+
+</div>
+
+
 ## Design Source
 - **Figma Design**: https://www.figma.com/community/file/1358180178353418071
 
