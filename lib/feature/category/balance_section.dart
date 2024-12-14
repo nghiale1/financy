@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../core/constant/app_colors.dart';
 
@@ -7,40 +8,58 @@ class BalanceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildBalanceItem('\$7,783.00', 'assets/images/up_arrow.png', Colors.white),
+              _buildBalanceItem('assets/icons/income.svg', 'Total Balance',
+                  '\$7,783.00', Colors.white),
               Container(
                 width: 1,
                 height: 42,
                 color: const Color(0xFFDFF7E2),
               ),
-              _buildBalanceItem('-\$1,187.40', 'assets/images/down_arrow.png', AppColors.secondaryColor),
+              _buildBalanceItem('assets/icons/expense.svg', 'Total Expense',
+                  '-\$1,187.40', AppColors.secondaryColor),
             ],
           ),
           const SizedBox(height: 12),
-          _buildProgressBar(),
+          _buildExpenseSection(),
           const SizedBox(height: 10),
-          _buildInfoText(),
+          _buildState(),
         ],
       ),
     );
   }
 
-  Widget _buildBalanceItem(String amount, String iconPath, Color color) {
+  Widget _buildBalanceItem(
+      String iconPath, String title, String amount, Color textColor) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(iconPath, width: 12, height: 12),
+        Row(
+          children: [
+            SvgPicture.asset(iconPath, width: 12, height: 12),
+            const SizedBox(
+              width: 6,
+            ),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontFamily: 'Poppins',
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
         Text(
           amount,
           style: TextStyle(
-            color: color,
+            color: textColor,
             fontSize: 24,
             fontWeight: FontWeight.w700,
             fontFamily: 'Poppins',
@@ -50,42 +69,50 @@ class BalanceSection extends StatelessWidget {
     );
   }
 
-  Widget _buildProgressBar() {
+  Widget _buildExpenseSection() {
     return Container(
-      width: 330,
-      height: 28,
+      margin: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
         color: const Color(0xFF052224),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 21),
-            child: Text(
-              '30%',
-              style: TextStyle(
-                color: Color(0xFFF1FFF3),
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Poppins',
+          const Expanded(
+            flex: 3,
+            child: Align(
+              alignment: Alignment.center,
+              child: const Text(
+                '30%',
+                style: TextStyle(
+                  color: Color(0xFFF1FFF3),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Poppins',
+                ),
               ),
             ),
           ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 33, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF1FFF3),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: const Text(
-              '\$20,000.00',
-              style: TextStyle(
-                color: Color(0xFF052224),
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Poppins',
+          Expanded(
+            flex: 7,
+            child: Container(
+              padding: const EdgeInsets.only(left: 33, top: 6, bottom: 6),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF1FFF3),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: const Align(
+                alignment: Alignment.center,
+                child: Text(
+                  '\$20,000.00',
+                  style: TextStyle(
+                    color: Color(0xFF052224),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
               ),
             ),
           ),
@@ -94,20 +121,20 @@ class BalanceSection extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoText() {
+  Widget _buildState() {
     return Row(
       children: [
-        Image.asset('assets/images/info_icon.png', width: 12, height: 12),
-        const SizedBox(width: 9),
-        const Expanded(
-          child: Text(
-            '30% of your expenses, looks good.',
-            style: TextStyle(
-              color: Color(0xFF052224),
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              fontFamily: 'Poppins',
-            ),
+        SvgPicture.asset('assets/icons/check.svg'),
+        const SizedBox(
+          width: 6,
+        ),
+        const Text(
+          '30% of your expenses, looks good.',
+          style: TextStyle(
+            color: Color(0xFF052224),
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Poppins',
           ),
         ),
       ],

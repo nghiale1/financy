@@ -1,5 +1,5 @@
 import 'package:financy/feature/common/presentation/custom_app_bar.dart';
-import 'package:financy/feature/home2/home_screen.dart';
+import 'package:financy/feature/home/home_screen.dart';
 import 'package:financy/feature/transaction/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +8,6 @@ import '../../../core/constant/app_colors.dart';
 import '../../analysis/quick_analysis_screen.dart';
 import '../../category/categories_screen.dart';
 import '../../profile/profile_screen.dart';
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -17,7 +16,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -26,6 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     const CategoriesScreen(),
     const ProfileScreen(),
   ];
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

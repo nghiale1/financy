@@ -1,172 +1,172 @@
-import 'package:financy/feature/signin/signin_form.dart';
-import 'package:financy/feature/signin/social_signin.dart';
+import 'package:financy/feature/common/presentation/main_screen.dart';
+import 'package:financy/feature/home/home_screen.dart';
+import 'package:financy/feature/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+import '../../core/constant/app_colors.dart';
+import '../common/presentation/widget/custom_button.dart';
+import 'custom_text_field.dart';
+import 'social_login_buttons.dart';
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF3629B7),
-      body: SafeArea(
+      backgroundColor: AppColors.primaryColor,
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.network(
-                    'https://cdn.builder.io/api/v1/image/assets/TEMP/cfd0f90ed19472332cf7559b8550470aae13ebcc668ebbb352c09aab9f3d1908?placeholderIfAbsent=true&apiKey=3c1d40c3645440a18a1b315bfc6e4772',
-                    width: 32,
-                    semanticLabel: 'Logo',
-                  ),
-                  Row(
+            const SizedBox(height: 80),
+            const Text(
+              'Welcome',
+              style: TextStyle(
+                color: Color(0xFF093030),
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            const SizedBox(height: 65),
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFFF1FFF3),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(70),
+                  topRight: Radius.circular(70),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(36.0),
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        'https://cdn.builder.io/api/v1/image/assets/TEMP/c36d9046fa37f2537549b962edb57ff7405364ec508577d81ab823ef81e737ca?placeholderIfAbsent=true&apiKey=3c1d40c3645440a18a1b315bfc6e4772',
-                        width: 17,
-                        semanticLabel: 'Notification icon',
+                      const CustomTextField(
+                        label: 'Username or email',
+                        hintText: 'example@example.com',
                       ),
-                      const SizedBox(width: 5),
-                      Image.network(
-                        'https://cdn.builder.io/api/v1/image/assets/TEMP/05a1b076584865e37f82170f408fccbba73bbd13d98e31a6cbc8b153cf143b15?placeholderIfAbsent=true&apiKey=3c1d40c3645440a18a1b315bfc6e4772',
-                        width: 15,
-                        semanticLabel: 'Settings icon',
+                      const SizedBox(height: 23),
+                      const CustomTextField(
+                        label: 'Password',
+                        hintText: '●●●●●●●●',
+                        isPassword: true,
                       ),
-                      const SizedBox(width: 5),
-                      Image.network(
-                        'https://cdn.builder.io/api/v1/image/assets/TEMP/c176e08856e763e0db5b4a7fae498877b54fd47b0b7a4ec0f0485dccff9c72a4?placeholderIfAbsent=true&apiKey=3c1d40c3645440a18a1b315bfc6e4772',
-                        width: 24,
-                        semanticLabel: 'User profile icon',
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 24.0, top: 36.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 15),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Welcome Back',
-                          style: TextStyle(
-                            color: Color(0xFF3629B7),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'Hello there, sign in to continue',
-                          style: TextStyle(
-                            color: Color(0xFF343434),
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        Center(
-                          child: Image.network(
-                            'https://cdn.builder.io/api/v1/image/assets/TEMP/d4f251c6ee303f20f60d8547c407188bdab1dbea6dab250b54e5f51f6783863d?placeholderIfAbsent=true&apiKey=3c1d40c3645440a18a1b315bfc6e4772',
-                            width: 213,
-                            semanticLabel: 'Welcome illustration',
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        const SignInForm(),
-                        const SizedBox(height: 40),
-                        Center(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Sign in logic here
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFF2F1F9),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
+                      const SizedBox(height: 36),
+                      Center(
+                        child: CustomButton(
+                          text: 'Log In',
+                          onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => const MainScreen(),
                               ),
-                              minimumSize: const Size(327, 48),
+                              (route) => false,
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 19),
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            // Handle forgot password
+                          },
+                          child: const Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              color: Color(0xFF093030),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'League Spartan',
                             ),
-                            child: const Text(
-                              'Sign in',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Center(
+                        child: CustomButton(
+                          text: 'Sign Up',
+                          onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const CreateAccountScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          },
+                          backgroundColor: const Color(0xFFDFF7E2),
+                          textColor: const Color(0xFF0E3E3E),
+                        ),
+                      ),
+                      const SizedBox(height: 23),
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            // Handle fingerprint access
+                          },
+                          child: RichText(
+                            text: const TextSpan(
+                              text: 'Use ',
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF093030),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Poppins',
                               ),
+                              children: [
+                                TextSpan(
+                                  text: 'fingerprint',
+                                  style: TextStyle(
+                                    color: AppColors.secondaryColor,
+                                  ),
+                                ),
+                                TextSpan(text: ' to access'),
+                              ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 24),
-                        const SocialSignIn(),
-                        const SizedBox(height: 24),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Don't have an account?",
-                              style: TextStyle(
-                                color: Color(0xFF343434),
-                                fontSize: 12,
-                              ),
+                      ),
+                      const SizedBox(height: 28),
+                      const Center(
+                        child: Text(
+                          'or sign up with',
+                          style: TextStyle(
+                            color: Color(0xFF093030),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'League Spartan',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 17),
+                      const SocialLoginButtons(),
+                      const SizedBox(height: 28),
+                      Center(
+                        child: RichText(
+                          text: const TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(
+                              color: Color(0xFF093030),
+                              fontSize: 13,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'League Spartan',
                             ),
-                            TextButton(
-                              onPressed: () {
-                                // Navigate to sign up screen
-                              },
-                              child: const Text(
-                                'Sign Up',
+                            children: [
+                              TextSpan(
+                                text: 'Sign Up',
                                 style: TextStyle(
-                                  color: Color(0xFF3629B7),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF3299FF),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 41),
-                        Center(
-                          child: Container(
-                            width: 134,
-                            height: 5,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFCACACA),
-                              borderRadius: BorderRadius.circular(100),
-                            ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

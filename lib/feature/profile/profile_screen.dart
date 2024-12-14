@@ -1,15 +1,15 @@
 import 'package:financy/feature/profile/profile_avatar.dart';
-import 'package:financy/feature/profile/profile_header.dart';
 import 'package:financy/feature/profile/profile_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constant/app_colors.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: SingleChildScrollView(
@@ -22,7 +22,9 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               const ProfileAvatar(),
-              const SizedBox(height: 36,),
+              const SizedBox(
+                height: 36,
+              ),
               Container(
                 decoration: const BoxDecoration(
                   color: Color(0xFFF1FFF3),
@@ -37,9 +39,9 @@ class ProfileScreen extends StatelessWidget {
                     Text(
                       'John Smith',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: const Color(0xFF0E3E3E),
-                        fontWeight: FontWeight.bold,
-                      ),
+                            color: const Color(0xFF0E3E3E),
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const SizedBox(height: 28),
                     const ProfileMenu(),

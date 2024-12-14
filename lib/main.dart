@@ -1,18 +1,15 @@
 import 'package:financy/feature/signin/signin_screen.dart';
-import 'package:financy/feature/wallet_home/wallet_home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'core/constant/app_colors.dart';
-import 'feature/signin2/signin_screen.dart';
-import 'feature/common/provider/notification_provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => NotificationProvider(),
-    )
-  ],
-  child: MyApp(),));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
